@@ -1,6 +1,4 @@
 <?php
-//ไล์เชื่อต่อฐานข้อมูล
-
 $hostname = 'localhost';
 $username = 'root';
 $password = '';
@@ -22,8 +20,6 @@ mysqli_query($conn,"SET character_set_connection=utf8");//ตั้งค่า�
 
 date_default_timezone_set('Asia/Bangkok');
 ?>
-
-
 <style type="text/css">
 .con1{
     width: 280px;

@@ -1,4 +1,3 @@
-
 <?php include 'header.php' ?>
     <header>
         <div class="container">
