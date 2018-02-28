@@ -3,11 +3,11 @@ include('header.php');
 require 'connect_db.php';
 $id = $_GET['id'];
 $cata = $_GET['cata'];
-$query = mysql_query("SELECT * FROM `student`
+$query = mysqli_query($conn,"SELECT * FROM `student`
         INNER JOIN classroom ON student.room_id = classroom.room_id
         INNER JOIN class ON student.class_id = class.class_id
         WHERE student.st_id = '$id'");
-    $result = mysql_fetch_assoc($query);
+    $result = mysqli_fetch_assoc($query);
     $birth = str_replace('-', '/', $result['st_birth']);
     $birth = date('d/m/Y',strtotime($birth));
     if (isset($_GET['search_week'])) {
@@ -115,17 +115,17 @@ $query = mysql_query("SELECT * FROM `student`
                              <br>
                             <?php
                                     $sql_dev = "SELECT * FROM development where dev_cata = '$cata'";
-                                    $query_dev = mysql_query($sql_dev);
-                                    if (mysql_num_rows($query_dev)>0) {
+                                    $query_dev = mysqli_query($conn,$sql_dev);
+                                    if (mysqli_num_rows($query_dev)>0) {
                                       $num = 0;
-                                    while ($result_dev = mysql_fetch_array($query_dev)) {
+                                    while ($result_dev = mysqli_fetch_array($query_dev)) {
                                       $num++;
-                                      $query_ssd = mysql_query("SELECT * FROM st_succ_dev Where st_id = '$id' and dev_id = '".$result_dev['dev_id']."' and ssd_date between ('$date_search1') and ('$date_search2')");
+                                      $query_ssd = mysqli_query($conn,"SELECT * FROM st_succ_dev Where st_id = '$id' and dev_id = '".$result_dev['dev_id']."' and ssd_date between ('$date_search1') and ('$date_search2')");
                                        
-                                        if (mysql_num_rows($query_ssd)>0) {
-                                          $dev_sco = mysql_num_rows($query_ssd)*3;
+                                        if (mysqli_num_rows($query_ssd)>0) {
+                                          $dev_sco = mysqli_num_rows($query_ssd)*3;
                                           $score = 0;
-                                          while ($reuslt_succ = mysql_fetch_array($query_ssd)) {
+                                          while ($reuslt_succ = mysqli_fetch_array($query_ssd)) {
                                               $score = $score + $reuslt_succ['ssd_score'];
                                           }
                                           $scores[$num] = $score*100/$dev_sco;

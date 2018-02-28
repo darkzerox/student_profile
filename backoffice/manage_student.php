@@ -2,18 +2,18 @@
 	session_start();
 	require '../connect_db.php';
 	if (isset($_GET['de'])) {
-		$query = mysql_query("SELECT room_id FROM student WHERE st_id = '".$_GET['st_id']."'");
-		if (mysql_num_rows($query)>0) {
-			$result = mysql_fetch_assoc($query);
-			$query_room = mysql_query("SELECT room_max FROM classroom WHERE room_id = '".$result['room_id']."'");
-			$result_room = mysql_fetch_assoc($query_room);
+		$query = mysqli_query($conn,"SELECT room_id FROM student WHERE st_id = '".$_GET['st_id']."'");
+		if (mysqli_num_rows($query)>0) {
+			$result = mysqli_fetch_assoc($query);
+			$query_room = mysqli_query($conn,"SELECT room_max FROM classroom WHERE room_id = '".$result['room_id']."'");
+			$result_room = mysqli_fetch_assoc($query_room);
 			$room_max = $result_room['room_max']-1;
 			if ($room_max<0) {
 				$room_max = 0;
 			}
-			$query_up = mysql_query("UPDATE `classroom` SET `room_max`= '$room_max' WHERE room_id = '".$result['room_id']."'");
+			$query_up = mysqli_query($conn,"UPDATE `classroom` SET `room_max`= '$room_max' WHERE room_id = '".$result['room_id']."'");
 
-			$query = mysql_query("DELETE FROM student WHERE st_id = '".$_GET['st_id']."'");
+			$query = mysqli_query($conn,"DELETE FROM student WHERE st_id = '".$_GET['st_id']."'");
 			if ($query && $query_up) {
 				echo "<script type=\"text/javascript\">alert('เรียบร้อย') </script>";
 			}else{
@@ -61,13 +61,13 @@
 			<?php
 				$num=0;
 				$sql = "SELECT * FROM `student`";
-				$query = mysql_query($sql);
-				while ($result = mysql_fetch_array($query)) {
+				$query = mysqli_query($conn,$sql);
+				while ($result = mysqli_fetch_array($query)) {
 				$num++;
-					$query_class = mysql_query("SELECT * FROM `class` WHERE class_id = '".$result['class_id']."'");
-					$re_class = mysql_fetch_assoc($query_class);
-					$query_room = mysql_query("SELECT * FROM `classroom` WHERE room_id = '".$result['room_id']."'");
-					$re_room = mysql_fetch_assoc($query_room);
+					$query_class = mysqli_query($conn,"SELECT * FROM `class` WHERE class_id = '".$result['class_id']."'");
+					$re_class = mysqli_fetch_assoc($query_class);
+					$query_room = mysqli_query($conn,"SELECT * FROM `classroom` WHERE room_id = '".$result['room_id']."'");
+					$re_room = mysqli_fetch_assoc($query_room);
 			?>
 				<tbody>
 					<tr>
@@ -94,8 +94,8 @@
 		</div>
 	</div>
 	<?php 
-	$query = mysql_query("SELECT * FROM `student`");
-	while ($result = mysql_fetch_array($query)) {
+	$query = mysqli_query($conn,"SELECT * FROM `student`");
+	while ($result = mysqli_fetch_array($query)) {
 		?>
 					<div id="edit<?=$result['st_id']?>" class="overlay light">
                         <a class="cancel" href="#"></a>
@@ -111,8 +111,8 @@
                             	ผู้ปกครอง : <select name="per_id">
 									<option value=""></option>
 									<?php
-									$queryp = mysql_query("SELECT * FROM `personal` where pertype_id = '2'");
-									while ($resultp=mysql_fetch_array($queryp)) {
+									$queryp = mysqli_query($conn,"SELECT * FROM `personal` where pertype_id = '2'");
+									while ($resultp=mysqli_fetch_array($queryp)) {
 										echo "<option value=".$resultp['per_id'].">".$resultp['per_name']." ".$resultp['per_name']."</option>";
 									}
 									?>
@@ -120,8 +120,8 @@
 								ชั้นเรียน : <select name="class_id">
 									<option value=""></option>
 									<?php
-									$querys = mysql_query("SELECT * FROM `class`");
-									while ($results=mysql_fetch_array($querys)) {
+									$querys = mysqli_query($conn,"SELECT * FROM `class`");
+									while ($results=mysqli_fetch_array($querys)) {
 										echo "<option value=".$results['class_id'].">".$results['class_name']."</option>";
 									}
 									?>

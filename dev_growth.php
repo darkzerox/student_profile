@@ -2,8 +2,8 @@
 include('header.php');
 require 'connect_db.php';
 $id = $_GET['id'];
-$query_st = mysql_query("SELECT * FROM `student` where st_id = '$id'");
-$result_st = mysql_fetch_assoc($query_st);
+$query_st = mysqli_query($conn,"SELECT * FROM `student` where st_id = '$id'");
+$result_st = mysqli_fetch_assoc($query_st);
 $limit_hight = 200;
 ?>
 <br>
@@ -42,8 +42,8 @@ $limit_hight = 200;
                             <div class="wrap_graph">
                               <?php 
                               $num=0;
-                              $query_gro = mysql_query("SELECT * FROM `growth` where st_id = '$id'");
-                              while ($result_gro = mysql_fetch_array($query_gro)) {
+                              $query_gro = mysqli_query($conn,"SELECT * FROM `growth` where st_id = '$id'");
+                              while ($result_gro = mysqli_fetch_array($query_gro)) {
                               $num++;
                                ?>
                                <div class="w3-light-grey"><div class="con_graph_w"><?=$result_gro['growth_date']?></div>

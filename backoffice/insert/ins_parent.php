@@ -6,7 +6,7 @@
 		
 			$sql = "INSERT INTO `personal`(`per_name`, `per_lastname`, `per_address`, `per_tel`, `per_email`, `per_username`, `per_password`,`pertype_id`) VALUES ('".$_POST['per_name']."','".$_POST['per_lastname']."','".$_POST['per_address']."','".$_POST['per_tel']."','".$_POST['per_email']."','".$_POST['per_username']."','".$_POST['per_password']."','2')";
 		
-			$query = mysql_query($sql);
+			$query = mysqli_query($conn,$sql);
 		}else{
 			echo "<script type=\"text/javascript\">alert('รหัสผ่านไม่ตรงกัน') </script>";
 		}

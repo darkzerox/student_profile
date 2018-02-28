@@ -31,10 +31,10 @@
 					</tr>
 				</thead>
 			<?php
-				$query = mysql_query("SELECT * FROM `personal` WHERE pertype_id = '1'");
-				while ($result =mysql_fetch_array($query)) {
-					$query_room = mysql_query("SELECT * FROM `classroom` WHERE room_id = '".$result['room_id']."'");
-					$re_room = mysql_fetch_assoc($query_room);
+				$query = mysqli_query($conn,"SELECT * FROM `personal` WHERE pertype_id = '1'");
+				while ($result =mysqli_fetch_array($query)) {
+					$query_room = mysqli_query($conn,"SELECT * FROM `classroom` WHERE room_id = '".$result['room_id']."'");
+					$re_room = mysqli_fetch_assoc($query_room);
 			?>
 				<tbody>
 					<tr>

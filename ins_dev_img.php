@@ -10,7 +10,7 @@ $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
 
 
-    $query = mysql_query("INSERT INTO `student_img`( `stimg_img`, `stimg_detail`, `st_id`) VALUES ('$target_file','".$_POST['stimg_detail']."','$id')");
+    $query = mysqli_query($conn,"INSERT INTO `student_img`( `stimg_img`, `stimg_detail`, `st_id`) VALUES ('$target_file','".$_POST['stimg_detail']."','$id')");
     
     if ($query) {
         echo "<script type=\"text/javascript\">alert('เรียบร้อย') </script>";

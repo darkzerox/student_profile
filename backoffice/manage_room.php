@@ -4,8 +4,8 @@
 	if (isset($_GET['ins'])) {
 		$class_id = $_POST['class_id'];
 		for ($i=1; $i < 50; $i++) { 
-			$query_check = mysql_query("SELECT * FROM `classroom` WHERE room_name = 'อ.$class_id/$i'");
-			if (mysql_num_rows($query_check)<1) {
+			$query_check = mysqli_query($conn,"SELECT * FROM `classroom` WHERE room_name = 'อ.$class_id/$i'");
+			if (mysqli_num_rows($query_check)<1) {
 				$room_ins = $i;
 				$i= 51;
 				$check = true;
@@ -15,7 +15,7 @@
 		}
 		if ($check) {
 			$room_name = "อ.".$class_id."/".$room_ins;
-			$query_ins = mysql_query("INSERT INTO `classroom`( `room_name`, `class_id`, `room_max`) VALUES ('$room_name','$class_id','0')");
+			$query_ins = mysqli_query($conn,"INSERT INTO `classroom`( `room_name`, `class_id`, `room_max`) VALUES ('$room_name','$class_id','0')");
 		}else{
 			$query_ins = false;
 		}
@@ -55,8 +55,8 @@
 			<?php
 				$num=0;
 				$sql = "SELECT * FROM `class`";
-				$query = mysql_query($sql);
-				while ($result = mysql_fetch_array($query)) {
+				$query = mysqli_query($conn,$sql);
+				while ($result = mysqli_fetch_array($query)) {
 				$num++;
 					
 			?>

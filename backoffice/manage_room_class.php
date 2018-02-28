@@ -33,8 +33,8 @@
 			<?php
 				$num=0;
 				$sql = "SELECT * FROM `classroom`  WHERE classroom.class_id = '$id' ";
-				$query = mysql_query($sql);
-				while ($result = mysql_fetch_array($query)) {
+				$query = mysqli_query($conn,$sql);
+				while ($result = mysqli_fetch_array($query)) {
 				$num++;
 					
 			?>
@@ -42,12 +42,12 @@
 					 <tr>
                                          <?php
                                          $sql1 = "SELECT * FROM personal per inner join personaltype pt ON per.pertype_id = pt.pertype_id WHERE per.pertype_id = 1 and room_id = '".$result['room_id']."' " ;
-                                         $result1 = mysql_query($sql1) or die(mysql_error());
+                                         $result1 = mysqli_query($conn,$sql1) or die(mysql_error());
                                          ;
                                          ?>
 
                                                     <td><?=$result['room_name']?></td>
-                                                    <td><?php while ($value1 = mysql_fetch_array($result1)) {
+                                                    <td><?php while ($value1 = mysqli_fetch_array($result1)) {
                                                     	echo "ครู &nbsp";
                                                     		echo $value1['per_name'];
                                                     		echo "&nbsp&nbsp&nbsp";

@@ -4,9 +4,9 @@
 	if (isset($_POST['st_name'])) {
 			$check = true;
 			for ($i=1; $i <100 ; $i++) { 
-				$query_class = mysql_query("SELECT * FROM `classroom` WHERE room_id = '$i' and class_id = '".$_POST['class_id']."'");
-				$result_class = mysql_fetch_assoc($query_class);
-				if (mysql_num_rows($query_class)>0) {
+				$query_class = mysqli_query($conn,"SELECT * FROM `classroom` WHERE room_id = '$i' and class_id = '".$_POST['class_id']."'");
+				$result_class = mysqli_fetch_assoc($query_class);
+				if (mysqli_num_rows($query_class)>0) {
 					if ($result_class['room_max']>20) {
 						$check = false;
 					}else{
@@ -18,14 +18,14 @@
 			}
 
 			if ($check == true) {
-				$query_per = mysql_query("SELECT per_id FROM personal where per_name = '".$_POST['per_name']."' and per_lastname = '".$_POST['per_lastname']."'");
+				$query_per = mysqli_query($conn,"SELECT per_id FROM personal where per_name = '".$_POST['per_name']."' and per_lastname = '".$_POST['per_lastname']."'");
 				echo "SELECT per_id FROM personal where per_name = '".$_POST['per_name']."' and per_lastname = '".$_POST['per_lastname']."'";
-				if (mysql_num_rows($query_per)>0) {
-					$query_ins = mysql_query("UPDATE `classroom` SET `room_max`= '$room_max' WHERE room_id='$i'");
-					$result_per = mysql_fetch_assoc($query_per);
+				if (mysqli_num_rows($query_per)>0) {
+					$query_ins = mysqli_query($conn,"UPDATE `classroom` SET `room_max`= '$room_max' WHERE room_id='$i'");
+					$result_per = mysqli_fetch_assoc($query_per);
 					$sql = "INSERT INTO `student`(`st_name`, `st_lastname`, `st_birth`, `st_address`, `st_father`, `st_mother`, `class_id`,`per_id`,`room_id`) VALUES ('".$_POST['st_name']."','".$_POST['st_lastname']."','".$_POST['st_birth']."','".$_POST['st_address']."','".$_POST['st_father']."','".$_POST['st_mother']."','".$_POST['class_id']."','".$result_per['per_id']."','$room_id')";
 					echo $sql;
-					$query = mysql_query($sql);
+					$query = mysqli_query($conn,$sql);
 					if ($query) {
 						echo "<script type=\"text/javascript\">alert('เรียบร้อย') </script>";
 			        	header("Refresh:0; ../manage_student.php");
@@ -91,8 +91,8 @@
 								<select name="class_id">
 									<option value=""></option>
 									<?php
-									$query = mysql_query("SELECT * FROM `class`");
-									while ($result=mysql_fetch_array($query)) {
+									$query = mysqli_query($conn,"SELECT * FROM `class`");
+									while ($result=mysqli_fetch_array($query)) {
 										echo "<option value=".$result['class_id'].">".$result['class_name']."</option>";
 									}
 									?>

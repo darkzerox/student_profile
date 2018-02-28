@@ -8,7 +8,7 @@ $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
-    $query = mysql_query("UPDATE `student` SET `st_img`='$target_file' WHERE st_id = '$id'");
+    $query = mysqli_query($conn,"UPDATE `student` SET `st_img`='$target_file' WHERE st_id = '$id'");
     
     if ($query) {
         echo "<script type=\"text/javascript\">alert('เรียบร้อย') </script>";

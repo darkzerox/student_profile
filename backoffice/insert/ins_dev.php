@@ -4,7 +4,7 @@
 	if (isset($_POST['name'])) {
 		
 			$sql = "INSERT INTO `development`( `dev_name`, `dev_detail`, `dev_cata`) VALUES ('".$_POST['name']."','".$_POST['detail']."','".$_POST['cata']."')";
-			$query = mysql_query($sql);
+			$query = mysqli_query($conn,$sql);
 		
 		if ($query) {
 			echo "<script type=\"text/javascript\">alert('เรียบร้อย') </script>";

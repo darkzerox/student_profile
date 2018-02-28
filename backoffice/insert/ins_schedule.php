@@ -5,7 +5,7 @@
 		
 			$sql = "INSERT INTO `schedule`(`sch_detail`, `sch_date`, `sch_timestart`, `sch_timeend`, `room_id`) VALUES ('".$_POST['sch_detail']."','".$_POST['sch_date']."','".$_POST['sch_timestart']."','".$_POST['sch_timeend']."','".$_POST['room_id']."')";
 		
-			$query = mysql_query($sql);
+			$query = mysqli_query($conn,$sql);
 		
 		if ($query) {
 			echo "<script type=\"text/javascript\">alert('เรียบร้อย') </script>";
@@ -59,8 +59,8 @@
 								<select name="room_id" required>
 									<option></option>
 							<?php
-								$query_r = mysql_query("SELECT * FROM classroom");
-								while ($result_r = mysql_fetch_array($query_r)) {
+								$query_r = mysqli_query($conn,"SELECT * FROM classroom");
+								while ($result_r = mysqli_fetch_array($query_r)) {
 								?>
 									<option value="<?=$result_r['room_id']?>"><?=$result_r['room_name']?></option>
 								<?php

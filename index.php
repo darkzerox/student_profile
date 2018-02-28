@@ -6,9 +6,16 @@
     </header>
     <?php
     if (@$_SESSION['pertype_id']==1) {
-         header("Refresh:1; techer.php");
+        //  header("Refresh:1; techer.php");
+        echo '<script type="text/javascript">        
+                window.location="/techer.php";
+            </script>';
+         
     }if (@$_SESSION['pertype_id']==2) {
-         header("Refresh:0; student.php");
+        echo '<script type="text/javascript">       
+         window.location="/student.php";
+        </script>';
+        //  header("Refresh:0; student.php");
     }if (@$_SESSION['pertype_id']==""){
        ?>
     <div class="index">

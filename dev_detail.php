@@ -34,8 +34,8 @@ $id = $_GET['id'];
                 <?php
                 $num=0;
                 $sql = "SELECT * FROM `development` where dev_cata = '$cata'";
-                $query = mysql_query($sql) or die(mysql_error());
-                while($result = mysql_fetch_array($query)) {
+                $query = mysqli_query($conn,$sql) or die(mysql_error());
+                while($result = mysqli_fetch_array($query)) {
                     $num++;
                 ?>
                     <tr>

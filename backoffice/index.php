@@ -9,7 +9,12 @@
 <body>
 	<?php
 	if (isset($_SESSION['pertype_id'])&&$_SESSION['pertype_id']==0) {
-		header("Refresh:0; manage_techer.php");
+		// header("Refresh:0; manage_techer.php");
+		echo "<script type=\"text/javascript\">alert('เรียบร้อย') 
+				  window.location='/backoffice/manage_techer.php'; 
+			</script>";
+
+
 	}else{
 		?>
 	<div class="wrap">

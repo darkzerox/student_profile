@@ -2,7 +2,7 @@
 	session_start();
 	require '../connect_db.php';
 	if (isset($_GET['de'])) {
-		$query = mysql_query("DELETE FROM personal WHERE per_id = '".$_GET['per_id']."'");
+		$query = mysqli_query($conn,"DELETE FROM personal WHERE per_id = '".$_GET['per_id']."'");
 		if ($query) {
 			echo "<script type=\"text/javascript\">alert('เรียบร้อย') </script>";
 		}else{
@@ -11,7 +11,7 @@
 	}
 	if (isset($_POST['per_name'])) {
 		$per_id = $_GET['per_id'];
-		$query = mysql_query("UPDATE `personal` SET `per_name`='".$_POST['per_name']."',`per_lastname`='".$_POST['per_lastname']."',`per_address`='".$_POST['per_address']."',`per_tel`='".$_POST['per_tel']."',`per_email`='".$_POST['per_email']."',`room_id`= '0' WHERE per_id = '$per_id'");
+		$query = mysqli_query($conn,"UPDATE `personal` SET `per_name`='".$_POST['per_name']."',`per_lastname`='".$_POST['per_lastname']."',`per_address`='".$_POST['per_address']."',`per_tel`='".$_POST['per_tel']."',`per_email`='".$_POST['per_email']."',`room_id`= '0' WHERE per_id = '$per_id'");
 		if ($query) {
         	echo "<script type=\"text/javascript\">alert('เรียบร้อย') </script>";
 		}else{
@@ -52,11 +52,11 @@
 				</thead>
 			<?php
 				$num=0;
-				$query = mysql_query("SELECT * FROM `personal` WHERE pertype_id = '2'");
-				while ($result =mysql_fetch_array($query)) {
+				$query = mysqli_query($conn,"SELECT * FROM `personal` WHERE pertype_id = '2'");
+				while ($result =mysqli_fetch_array($query)) {
 				$num++;
-					$query_room = mysql_query("SELECT * FROM `classroom` WHERE room_id = '".$result['room_id']."'");
-					$re_room = mysql_fetch_assoc($query_room);
+					$query_room = mysqli_query($conn,"SELECT * FROM `classroom` WHERE room_id = '".$result['room_id']."'");
+					$re_room = mysqli_fetch_assoc($query_room);
 			?>
 				<tbody>
 					<tr>
@@ -79,8 +79,8 @@
 		</div>
 	</div>
 	<?php 
-	$query = mysql_query("SELECT * FROM `personal` WHERE pertype_id = '2'");
-				while ($result =mysql_fetch_array($query)) {
+	$query = mysqli_query($conn,"SELECT * FROM `personal` WHERE pertype_id = '2'");
+				while ($result =mysqli_fetch_array($query)) {
 					?>
 					<div id="edit<?=$result['per_id']?>" class="overlay light">
                         <a class="cancel" href="#"></a>

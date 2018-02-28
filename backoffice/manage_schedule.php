@@ -2,7 +2,7 @@
 	session_start();
 	require '../connect_db.php';
 	if (isset($_GET['de'])) {
-		$query = mysql_query("DELETE FROM schedule WHERE sch_id = '".$_GET['sch_id']."'");
+		$query = mysqli_query($conn,"DELETE FROM schedule WHERE sch_id = '".$_GET['sch_id']."'");
 		if ($query) {
 			echo "<script type=\"text/javascript\">alert('เรียบร้อย') </script>";
 		}else{
@@ -12,12 +12,12 @@
 	if (isset($_GET['class_id'])) {
 		$class_id = $_GET['class_id'];
 		$room_id = $_GET['room_id'];
-		$query_r = mysql_query("SELECT * FROM `classroom` WHERE class_id = '$class_id' and room_name = 'อ.$class_id/$room_id'");
-		$result_r = mysql_fetch_assoc($query_r);
+		$query_r = mysqli_query($conn,"SELECT * FROM `classroom` WHERE class_id = '$class_id' and room_name = 'อ.$class_id/$room_id'");
+		$result_r = mysqli_fetch_assoc($query_r);
 
-				$query = mysql_query("SELECT * FROM `schedule` where room_id = '".$result_r['room_id']."'");
+				$query = mysqli_query($conn,"SELECT * FROM `schedule` where room_id = '".$result_r['room_id']."'");
 	}else{
-				$query = mysql_query("SELECT * FROM `schedule`");
+				$query = mysqli_query($conn,"SELECT * FROM `schedule`");
 	}
 ?>
 <html>
@@ -62,9 +62,9 @@
 					</tr>
 				</thead>
 			<?php
-				while ($result =mysql_fetch_array($query)) {
-					$query_room = mysql_query("SELECT * FROM `classroom` WHERE room_id = '".$result['room_id']."'");
-					$re_room = mysql_fetch_assoc($query_room);
+				while ($result =mysqli_fetch_array($query)) {
+					$query_room = mysqli_query($conn,"SELECT * FROM `classroom` WHERE room_id = '".$result['room_id']."'");
+					$re_room = mysqli_fetch_assoc($query_room);
 			?>
 				<tbody>
 					<tr>

@@ -47,9 +47,9 @@
 					</tr>
 				</thead>
 			<?php
-			$query = mysql_query("SELECT * FROM `development` where dev_cata = '".$cata."'");
-			if (mysql_num_rows($query)>0) {
-				while ($result =mysql_fetch_array($query)) {
+			$query = mysqli_query($conn,"SELECT * FROM `development` where dev_cata = '".$cata."'");
+			if (mysqli_num_rows($query)>0) {
+				while ($result =mysqli_fetch_array($query)) {
 			?>
 				<tbody>
 					<tr>

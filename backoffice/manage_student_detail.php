@@ -3,11 +3,11 @@
 	require '../connect_db.php';
 	$st_id = $_GET['st_id'];
 
-	$query = mysql_query("SELECT * FROM `student`
+	$query = mysqli_query($conn,"SELECT * FROM `student`
 		INNER JOIN classroom ON student.room_id = classroom.room_id
 		INNER JOIN class ON student.class_id = class.class_id
 		WHERE student.st_id = '$st_id'");
-	$result = mysql_fetch_assoc($query);
+	$result = mysqli_fetch_assoc($query);
 	$birth = str_replace('-', '/', $result['st_birth']);
 	$birth = date('d/m/Y',strtotime($birth));
 ?>
@@ -56,12 +56,12 @@
 							<legend>ข้อมูลพัฒนาการ</legend>
 							<?php
 								for ($i=1; $i <=4 ; $i++) {
-									$query_dev[$i] = mysql_query("SELECT * FROM development where dev_cata = '$i'");
-									if (mysql_num_rows($query_dev[$i])>0) {
-										$dev_sco[$i] = mysql_num_rows($query_dev[$i])*3;
-										$query_succ[$i] = mysql_query("SELECT ssd_score FROM st_succ_dev where dev_cata = '$i' and st_id = '".$result['st_id']."'");
+									$query_dev[$i] = mysqli_query($conn,"SELECT * FROM development where dev_cata = '$i'");
+									if (mysqli_num_rows($query_dev[$i])>0) {
+										$dev_sco[$i] = mysqli_num_rows($query_dev[$i])*3;
+										$query_succ[$i] = mysqli_query($conn,"SELECT ssd_score FROM st_succ_dev where dev_cata = '$i' and st_id = '".$result['st_id']."'");
 										$score[$i]=0;
-										while ($reuslt_succ[$i] = mysql_fetch_array($query_succ[$i])) {
+										while ($reuslt_succ[$i] = mysqli_fetch_array($query_succ[$i])) {
 											$score[$i] = $score[$i] + $reuslt_succ[$i]['ssd_score'];
 										}
 										$score[$i] = $score[$i]*100/$dev_sco[$i];
@@ -99,9 +99,9 @@
 						<fieldset>
 							<legend>รูปภาพ</legend>
 							<?php
-                            $query_st_img = mysql_query("SELECT * FROM student_img where st_id = '".$result['st_id']."'");
-                            if(mysql_num_rows($query_st_img)>0){
-                                while ($result_st_img = mysql_fetch_array($query_st_img)) {
+                            $query_st_img = mysqli_query($conn,"SELECT * FROM student_img where st_id = '".$result['st_id']."'");
+                            if(mysqli_num_rows($query_st_img)>0){
+                                while ($result_st_img = mysqli_fetch_array($query_st_img)) {
                                 ?>
                                 <div class="article_img">
                                     <img src="../<?=$result_st_img['stimg_img']?>">
