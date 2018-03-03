@@ -12,13 +12,14 @@ require 'connect_db.php';
     <meta name="author" content="">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-default" style="margin-right:0px;">
-    <div class="container">
+    <div class="container no-margin">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">

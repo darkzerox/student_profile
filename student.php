@@ -44,7 +44,7 @@
                                 echo "ยังไม่ระบุ";
                             }
                              ?></td>
-                        <td><a href="dev_student.php?id=<?= $value['st_id'] ?>">ข้อมูลนักเรียน</a></td>
+                        <td><a class="btn btn-success" href="dev_student.php?id=<?= $value['st_id'] ?>">ข้อมูลนักเรียน</a></td>
                     </tr>
                 <?php 
                 }

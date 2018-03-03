@@ -55,8 +55,10 @@ if ($uploadOk == 0) {
         echo "Sorry, there was an error uploading your file.";
     }
 }
-header("Refresh:0; dev_student.php?id=$id");
-
+// header("Refresh:0; dev_student.php?id=$id");
+echo "<script type=\"text/javascript\">
+    window.location='/dev_student.php?id=".$id."';
+    </script>";
 
 }
 ?>

@@ -17,7 +17,10 @@ $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
     }else{
         echo "<script type=\"text/javascript\">alert('ล้มเหลว') </script>";
     }
-    header("Refresh:0; dev.php?id=$id");
+    echo "<script type=\"text/javascript\">
+    window.location='/dev.php?id=".$id."';
+    </script>";
+    // header("Refresh:0; dev.php?id=$id");
 
 
 

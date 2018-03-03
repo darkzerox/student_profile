@@ -54,13 +54,9 @@ $id = $_GET['id'];
                 </div>
             </a>
         </div>
-        <a href="#img">
-            <div>+ ข้อมูลรูป</div>
-        </a><br>
+        <a href="#img"><div class="btn btn-warning">เพิ่มข้อมูลรูป</div></a>
 
-        <a href="#ins_body">
-            <div>+ ข้อมูลร่างกาย</div>
-        </a>
+        <a href="#ins_body"><div class="btn btn-warning">เพิ่มข้อมูลร่างกาย</div></a>
     </div>
 
 <div id="img" class="overlay light">
@@ -96,7 +92,7 @@ $id = $_GET['id'];
 
 
 <div class="">
-    <a href="techer.php" class="">< กลับ </a>
+    <a href="techer.php" class="btn btn-info">< กลับ </a>
 </div>
 <?php
 include('footer.php');

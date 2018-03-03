@@ -25,12 +25,15 @@ $id = $_GET['id'];
         <div class="table-responsive">
             <form action="ins_dev.php?cata=<?=$cata?>&id=<?=$id?>" method="POST">
             <table class="table table-bordered">
-                <tr>
-                    <th style="text-align:center;">ลำดับ</th>
-                    <th style="text-align:center;">ชื่อ</th>
-                    <th style="text-align:center;">รายละเอียด</th>
-                    <th style="text-align:center;">คะแนน</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th style="text-align:center;">ลำดับ</th>
+                        <th style="text-align:center;">พัฒนาการ</th>
+                        <th style="text-align:center;">รายละเอียด</th>
+                        <th style="text-align:center;min-width: 200px;">คะแนน</th>
+                    </tr>
+                </thead>
+                <tbody> 
                 <?php
                 $num=0;
                 $sql = "SELECT * FROM `development` where dev_cata = '$cata'";
@@ -38,37 +41,41 @@ $id = $_GET['id'];
                 while($result = mysqli_fetch_array($query)) {
                     $num++;
                 ?>
+                              
                     <tr>
                         <td><?= $num ?></td>
                         <td><?= $result['dev_name'] ?></td>
                         <td><?= $result['dev_detail'] ?></td>
                         <td>
                             คะแนน <br> 
-                            <label for="score1<?= $result['dev_id']?>" class="btn_score" onclick="adddev(<?= $result['dev_id']?>)">
-                                <input id="score1<?= $result['dev_id']?>" type="radio" name="score<?= $result['dev_id']?>" value="1"> 1 คะแนน
+                            <label for="score1<?= $result['dev_id']?>" class="btn-score" onclick="adddev(<?= $result['dev_id']?>)">
+                                <input id="score1<?= $result['dev_id']?>" type="radio" name="score<?= $result['dev_id']?>" value="1"><p>1</p> 
                             </label>
-                            <br>
-                            <label for="score2<?= $result['dev_id']?>" class="btn_score" onclick="adddev(<?= $result['dev_id']?>)">
-                                <input id="score2<?= $result['dev_id']?>" type="radio" name="score<?= $result['dev_id']?>" value="2"> 2 คะแนน
+                           
+                            <label for="score2<?= $result['dev_id']?>" class="btn-score" onclick="adddev(<?= $result['dev_id']?>)">
+                                <input id="score2<?= $result['dev_id']?>" type="radio" name="score<?= $result['dev_id']?>" value="2"> <p>2</p> 
                             </label>
-                            <br>
-                            <label for="score3<?= $result['dev_id']?>" class="btn_score" onclick="adddev(<?= $result['dev_id']?>)">
-                                <input id="score3<?= $result['dev_id']?>" type="radio" name="score<?= $result['dev_id']?>" value="3"> 3 คะแนน
+                        
+                            <label for="score3<?= $result['dev_id']?>" class="btn-score" onclick="adddev(<?= $result['dev_id']?>)">
+                                <input id="score3<?= $result['dev_id']?>" type="radio" name="score<?= $result['dev_id']?>" value="3"> <p>3</p> 
                             </label>
                             <div id="dev_<?=$result['dev_id']?>"></div>
                             
                         </td>
                     </tr>
+                     
                 <?php 
                 }
+                
                 ?>
+                </tbody>
             </table>
             <div id="btn_sub">
             </div>
             </form>
         </div>
     </div>
-    <a href="javascript:history.go(-1)"> < กลับ </a>
+    <a class="btn btn-info" href="javascript:history.go(-1)"> < กลับ </a>
 <?php include('footer.php'); ?>
 <style type="text/css">
 .btn_score{
@@ -82,7 +89,7 @@ $id = $_GET['id'];
 <script type="text/javascript">
     function adddev (id) {
         document.getElementById("dev_"+id).innerHTML = "<input type='hidden' value="+id+" name='dev_id[]'>";
-        document.getElementById("btn_sub").innerHTML = "<button>ยืนยัน</button>";
+        document.getElementById("btn_sub").innerHTML = "<button class='btn  btn-success'>ยืนยัน</button>";
     }
 </script>
 

@@ -36,35 +36,7 @@ $query = mysqli_query($conn,"SELECT * FROM `student`
     }
 ?>
 <br>
-                    <div class="con1">
-                        <?php
-                        if ($result['st_img']!="") {
-                          ?>
-                          <img src="<?=$result['st_img']?>">
-                          <?php
-                        }else{
-                            $img = "img/default_child.jpg";
-                        ?>
-                          <img src="<?=$img?>">
-                        <?php
-                        }
-                        if (@$_SESSION['pertype_id']==2) {
-                        ?>
-                        <form method="post" action="edit_img_st.php?id=<?=$id?>"  enctype="multipart/form-data" style="position:absolute;">
-                          <label for="edit_img">
-                          <div class="edit_img_st">
-                             แก้ไขรูป
-                             
-                          </div>
-                          </label>
-                          <input id="edit_img" type="file" name="fileToUpload" id="fileToUpload" class="btn_edit_img" style="display:none;" required>
-                          
-                          <button style="display:none;" id="subimg" type="submit"></button>
-                        </form>
-                        <?php
-                        }
-                        ?>
-                    </div>
+                    
                     <div class="con2">
                         <fieldset class="dev_field">
                             <legend>ข้อมูลพัฒนาการ <?php 
@@ -165,7 +137,7 @@ $query = mysqli_query($conn,"SELECT * FROM `student`
                          <br>
                         </fieldset>
 </div>
-    <a href="javascript:history.go(-1)"> < กลับ </a>
+    <a class="btn btn-info" href="javascript:history.go(-1)"> < กลับ </a>
 <br>
 
 <?php 
@@ -180,7 +152,7 @@ $query = mysqli_query($conn,"SELECT * FROM `student`
   min-height: 500px;
 }
 .w3-light-grey{
-    width: 30px;
+    width: 100%;
     background: #ccc;
 }
 .progress{

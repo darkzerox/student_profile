@@ -19,7 +19,7 @@
     }if (@$_SESSION['pertype_id']==""){
        ?>
     <div class="index">
-        <div class="heading">WellCome CHILDREN</div>
+        <div class="heading">WELCOME CHILDREN</div>
             <a href="log_in.php" class="page-scroll btn btn-default">LOGIN</a>
             <a href="regis.php" class="page-scroll btn btn-default">REGIS</a>
     </div>
